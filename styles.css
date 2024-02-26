@@ -1,0 +1,94 @@
+/* Google fonts page: https://fonts.google.com/specimen/Abel */
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+
+/* you can easily customize the color scheme and animation here */
+:root {
+    /*   size */
+    --size: 100px;
+    /*   link color */
+    --customViolet: rgb(255, 188, 244);
+    /*   hovered link color */
+    --customOrange: rgb(255, 180, 40);
+    /*   active link color */
+    --customOrangeLight: rgb(255, 228, 152);
+    /*   selection color */
+    --customGray: rgba(85, 85, 85, 0.5);
+    /*   body background color */
+    --customBlack: rgb(15, 15, 20);
+    /* animation function */
+    --customFunction: ease-in-out;
+    /*   animation speed */
+    --customSpeed: 0.8s;
+}
+
+body {
+    font-family: 'Abel', Arial, sans-serif;
+    background: var(--customBlack);
+}
+
+*::selection {
+    background: var(--customGray);
+    color: white;
+}
+
+.animatedlink {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    font-size: var(--size);
+    color: var(--customViolet);
+    text-decoration: none;
+
+    transition: color var(--customSpeed) var(--customFunction);
+}
+
+.animatedlink::before,
+.animatedlink::after {
+    content: '';
+    background-color: var(--customViolet);
+
+    width: 100%;
+    height: calc(var(--size) / 25);
+
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    transform: scaleX(0);
+    transition: transform var(--customSpeed) var(--customFunction),
+        background-color var(--customSpeed) var(--customFunction);
+}
+
+.animatedlink::before {
+    transform-origin: right;
+}
+
+.animatedlink::after {
+    transform-origin: left;
+}
+
+.animatedlink:hover {
+    cursor: pointer;
+    color: var(--customOrange);
+}
+
+.animatedlink:hover::before {
+    background-color: var(--customOrange);
+    transform: scaleX(0.5);
+}
+
+.animatedlink:hover::after {
+    background-color: var(--customOrange);
+    transform: scaleX(0.5);
+}
+
+.animatedlink:active {
+    color: var(--customOrangeLight);
+}
+
+.animatedlink:active::before,
+.animatedlink:active::after {
+    background-color: var(--customOrangeLight);
+}
